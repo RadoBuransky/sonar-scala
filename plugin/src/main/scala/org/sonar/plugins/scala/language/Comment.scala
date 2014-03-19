@@ -37,6 +37,21 @@ case class Comment(lines: List[String], commentType: CommentType.CommentType) {
     }
 
   val isDocComment = commentType == CommentType.Doc
+  val isHeaderComment = commentType == CommentType.Header
+
+  override lazy val toString = {
+    val firstLine = lines.headOption.getOrElse("")
+    val lastLine = lines.lastOption.getOrElse("")
+    
+    val buf = new StringBuilder
+    buf ++= ("type = " + commentType.toString)
+    buf ++= ("firstLine = " + firstLine)
+    buf ++= ("lastLine = " + lastLine)
+    buf ++= ("numberOfLines = " + numberOfLines)
+    buf ++= ("numberOfCommentedOutLinesOfCode = " + numberOfCommentedOutLinesOfCode)
+
+    buf.toString
+  }
 }
 
 object Comment {
