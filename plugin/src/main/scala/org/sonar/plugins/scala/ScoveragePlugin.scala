@@ -26,6 +26,7 @@ import org.sonar.plugins.scala.sensor.{ScoverageSensor, ScoverageSourceImporterS
 import org.sonar.plugins.scala.language.Scala
 import org.sonar.plugins.scala.widget.ScoverageWidget
 import scala.collection.JavaConversions._
+import org.sonar.plugins.scala.colorizer.ScalaColorizerFormat
 
 /**
  * Plugin entry point.
@@ -38,7 +39,8 @@ class ScoveragePlugin extends SonarPlugin {
     classOf[ScalaMetrics],
     classOf[ScoverageSourceImporterSensor],
     classOf[ScoverageSensor],
-    classOf[ScoverageWidget]
+    classOf[ScoverageWidget],
+    classOf[ScalaColorizerFormat]
   )
 
   override val toString = getClass.getSimpleName
