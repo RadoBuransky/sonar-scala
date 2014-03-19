@@ -33,7 +33,7 @@ import org.sonar.plugins.scala.colorizer.ScalaColorizerFormat
  *
  * @author Rado Buransky
  */
-class ScoveragePlugin extends SonarPlugin {
+class ScalaPlugin extends SonarPlugin {
   override def getExtensions: java.util.List[Class[_ <: Extension]] = ListBuffer(
     classOf[Scala],
     classOf[ScalaMetrics],
@@ -44,4 +44,13 @@ class ScoveragePlugin extends SonarPlugin {
   )
 
   override val toString = getClass.getSimpleName
+}
+
+object ScalaPlugin {
+  def pathToScalaLibrary = getPathByResource("scala/package.class")
+
+  private def getPathByResource(name: String): String = {
+    val path = ScalaPlugin.getClass.getClassLoader.getResource(name).getPath
+    path.substring("file:".length(), path.lastIndexOf('!'))
+  }
 }
